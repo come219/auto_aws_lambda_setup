@@ -1,0 +1,18 @@
+{
+    "CodeSize": 343,
+    "Role": "arn:aws:iam::354557032487:role/Test-Role",
+    "RevisionId": "c16c0704-e588-4713-a55f-921120860164",
+    "Runtime": "python3.9",
+    "FunctionName": "test_cli",
+    "FunctionArn": "arn:aws:lambda:ap-south-1:354557032487:function:test_cli",
+    "CodeSha256": "yjAVWvNNdUowx4g2lLdd/R6r24f2r9UxBdV9dJdfjbw=",
+    "Version": "$LATEST",
+    "Timeout": 3,
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "Handler": "handler.lambda_handler",
+    "MemorySize": 128,
+    "Description": "",
+    "LastModified": "2022-12-08T04:14:05.193+0000"
+}

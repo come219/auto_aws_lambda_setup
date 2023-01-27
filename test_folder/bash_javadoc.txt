@@ -1,0 +1,15 @@
+# mod: example
+# txt: this module is an example for documentation.
+#      The txt sections as also opt and env ones can
+#      be multiline if lines are kept vertical aligned.
+
+# fun: sum num1 num2
+# txt: sum two numbers and output the result
+# opt: num1: the first number to sum
+# opt: num2: the second number to sum
+# use: sum 1 3
+# api: sum
+sum ()
+{
+  echo "$(($1 + $2))"
+}
