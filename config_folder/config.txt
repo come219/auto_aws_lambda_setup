@@ -1,0 +1,9 @@
+aws configure
+
+access key id: xxxxxxxxxxxxxxxxxxxx
+secret access key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+-> ok region default
+
+-> ok output format
+

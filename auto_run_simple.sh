@@ -20,18 +20,15 @@ echo "written by sebistj, 27/01/23"
 echo "last update, 27/01/23"
 echo "_________________________________________"
 
-PARAM_REGION ="ap-south-1"
-PARAM_ROLE ="dummy_role1"
-PARAM_NAME ="dumm_function1"
-PARAM_RUNTIME ="nodejs16.x"
-PARAM_RUNTIME1 ="nodejs"
-PARAM_RUNTIME2 ="nodejs14.x"
-PARAM_RUNTIME3 ="nodejs16.x"
-
-DEFAULT_REGION = "ap-southeast-1"
-MUMBAI_REGION = "ap-south-1"
-
-
+PARAM_REGION="ap-south-1"
+PARAM_ROLE="dummy_role1"
+PARAM_NAME="dummy_function1"
+PARAM_RUNTIME="nodejs16.x"
+PARAM_RUNTIME1="nodejs"
+PARAM_RUNTIME2="nodejs14.x"
+PARAM_RUNTIME3="nodejs16.x"
+DEFAULT_REGION="ap-southeast-1"
+MUMBAI_REGION="ap-south-1"
 
 
 
@@ -46,6 +43,8 @@ echo "REGION is set to: $REGION "
 
 echo "configuring the connection ..."
 
+echo "REGION!!!   $PARAM_REGION"
+
 # Configure the AWS CLI to use the region
 aws configure set default.region $PARAM_REGION
 
@@ -53,21 +52,20 @@ aws configure set default.region $PARAM_REGION
 
 # AWS CLI command: create role
 
-defaultROLEPATH = "/role_folder/test-role-policy.json"
-ROLE_PATH = "/role_folder/test-role-policy.json"
+ROLE_PATH="role_folder/test-role-policy.json"
 
 echo "Creating role: $rolename"
 echo "using role path: $ROLE_PATH"
 #aws iam create-role --role-name Test-Role --assume-role-policy-document file://test-role-policy.json
 # aws iam create-role --role-name $PARAM_ROLE --asume-role-polic-document file://$ROLE_PATH
-aws iam create-role --role-name $PARAM_ROLE --asume-role-polic-document file://$ROLE_PATH
+aws iam create-role --role-name $PARAM_ROLE --assume-role-policy-document file://$ROLE_PATH
 
 # example output as ARN:
 # --role arn:aws:iam::123456789012:role/service-role/MyTestFunction-role-tges6bf4
 
 
 echo "Writing rolename to variable to be used ..."
-outputARN = "abc"
+outputARN="abc"
 echo "role has been created successfully: ARN: $outputARN"
 
 # sample ARN
@@ -84,11 +82,11 @@ echo "role has been created successfully: ARN: $outputARN"
 
 # create lambda function 
 echo "Creating lambda function with name $PARAM_NAME"
-echo " chosen runtime & ARN"
-echo  "runtime: $PARAM_RUNTIME"
-echo  "role arn: $outputARN"
-echo  "output arn: abc"
-echo  "handler: ..."
+echo "chosen runtime & ARN"
+echo "runtime: $PARAM_RUNTIME"
+echo "role arn: $outputARN"
+echo "output arn: abc"
+echo "handler: ..."
 # aws lambda create-function --function-name test_cli --runtime python3.6 --role new_test_cli_role --handler handler.lambda_handler --zip-file fileb://lambda.zip
 # aws lambda create-function --function-name test_cli --runtime python3.6 --role arn:aws:iam::354557032487:role/Test-Role --handler handler.lambda_handler --zip-file fileb://lambda.zip
 # aws lambda create-function --function-name $PARAM_NAME --runtime python3.6 --role arn:aws:iam::354557032487:role/Test-Role --handler handler.lambda_handler --zip-file fileb://lambda.zip

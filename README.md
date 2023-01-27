@@ -7,6 +7,8 @@ This was last updated on, 27/01/23
 
 Prereq:
 
+awscli -> AWS command line use 
+
 jq - to replace json words
 
 python - python
