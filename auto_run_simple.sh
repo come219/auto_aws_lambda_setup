@@ -67,8 +67,10 @@ echo "Writing rolename to variable to be used ..."
 #aws iam create-role --role-name $PARAM_ROLE --asume-role-polic-document file://$ROLE_PATH
 
 outputARN="ARN ouput"
+pathARN="arn_folder/outputARN.txt"
 outputARN=$(aws iam create-role --role-name $PARAM_ROLE --assume-role-policy-document file://$ROLE_PATH)
-echo $outputARN > arn_folder/outputARN.txt
+echo $outputARN > $pathARN
+# arn_folder/outputARN.txt
 
 # example output as ARN:
 # --role arn:aws:iam::123456789012:role/service-role/MyTestFunction-role-tges6bf4
@@ -97,10 +99,24 @@ echo ""
 #fileARN=$(grep -Eo "$PARAM_ROLE" file:/arn_folder/outputARN.txt)
 #fileARN=$(grep -o '"Arn":.*' file://arn_folder/outputARN.txt | cut -d'"' -f4)
 #fileARN=$(grep -o '"$PARAM_ROLE":.*' file:/arn_folder/outputARN.txt | cut -d'"' -f4)
+#fileARN=$(grep -o '"Arn":.*' file:/arn_folder/outputARN.txt | cut -d'"' -f4)
 
-fileARN=$(grep -o '"Arn":.*' file:/arn_folder/outputARN.txt | cut -d'"' -f4)
-echo "fileARN: $fileARN"
-useARN=fileARN
+# fileARN=$(sed 's/.*"Arn": "\(.*\)".*/\1/p' "$pathARN")
+
+fileARN=$(sed 's/.*Arn”://' "$pathARN")
+
+# sed pipe out rest
+
+#fileARN2=$(sed '/CreateDate/d; /AssumeRolePolicyDocument/d' "$fileARN" )
+fileARN2=$(sed 's/, “Role.*//' "$fileARN" )
+
+echo ""
+echo "pathARN: $pathARN"
+echo "fileARN: $fileARN2"
+echo ""
+useARN=$fileARN2
+echo $useARN>>test_folder/test.txt
+
 
 ##
 # handler name:
@@ -132,6 +148,7 @@ echo "filepath: $usePath"
 
 aws lambda create-function --function-name $PARAM_NAME --runtime $PARAM_RUNTIME --role $useARN --handler $useHandler --zip-file fileb://$usePath
 
+
 ##
 # List of layer ARNs:
 #
@@ -158,6 +175,7 @@ echo "Source ARN: $useSourceARN"
 #
 # aws lambda create-event-source-mapping (ARN) (function-name) [(enabled?), (batch-size), (starting-position), (start-pos-timestamp), (cli-input-json), (skeleton) ]
 # aws lambda create-event-source-mapping --event-source-arn arn:aws:lambda:ap-south-1:354557032487:layer:python-dynamodb:1 --function-name test_cli --enabled
+
 aws lambda create-event-source-mapping --event-source-arn $useSourceARN --function-name $PARAM_NAME --enabled
 
 ##
