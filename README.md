@@ -67,7 +67,8 @@ This is a list of commands that are used within the project:
 
 This is a list files from the codebase that are required for the project to run properly. 
 
-+ /dummy_codebase/	| This folder contains the different dummy lambda function codes
+
++ /lambda_codebase/	| This folder contains the different dummy lambda function codes & zip files
 + /role_folder/		| This folder contains the different role configuration files represented as json
 + /config_folder/	| Contains the data for configuring to the AWS account & region
 + /old_folder/		| This folder contains old codebase files & example files
