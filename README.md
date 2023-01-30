@@ -1,4 +1,9 @@
-# This is a README.md file for this code project : AWS Lambda Dummy Function Automatic Setup
+This is a README.md file for this code project : AWS Lambda Dummy Function Automatic Setup
+
+
+# AWS Automatic Lambda Dummy Function Setup
+# /auto_aws_lambda_setup
+
 
 
 ## This is written by sebistj, 25/01/23
