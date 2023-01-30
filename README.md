@@ -1,14 +1,15 @@
-This is a README.md file for this code project : AWS Lambda Dummy Function Automatic Setup
+This is a README.md file for this code project : Automatic AWS Lambda Dummy Function Setup
+written by sebistj, 25/01/23
+last updated on, 27/01/23
 
 
-# AWS Automatic Lambda Dummy Function Setup
+# Automatic AWS Lambda Dummy Function Setup
 # /auto_aws_lambda_setup
 
-
-
-## This is written by sebistj, 25/01/23
-## This was last updated on, 27/01/23
-
+This project intends to, when invoked, automatically create an AWS Lambda function on the corresponding configured region.
+Currently it has two invocation methods:
+	- auto_run.sh	| This function features parameters when invoking the script, with multiple configurations. Error checking.
+	- auto_run_simple.sh	| This function runs the functions without parameters or intervention. Parameters are set within the script.
 
 ### Prereq:
 
