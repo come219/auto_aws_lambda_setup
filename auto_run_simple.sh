@@ -9,7 +9,7 @@
 # $ bash auto_run_simple.sh 
 # $ ./auto_run_simple
 #
-#####
+###
 
 
 ##
@@ -42,17 +42,22 @@ MUMBAI_REGION="ap-south-1"
 echo ""
 echo "configuring the AWS ..."
 
-echo "REGION is set to: $PARAM_REGION "
+echo ""
 
-echo "configuring the connection ..."
-
+##
 # Configure the AWS CLI to use the region
+#
 aws configure set default.region $PARAM_REGION
+echo "configuring the connection ..."
+echo "REGION is set to: $PARAM_REGION "
 
 # error checking for connection?
 
-# AWS CLI command: create role
 
+##
+# AWS CLI command: create role
+#
+#
 ROLE_PATH="role_folder/test-role-policy.json"
 
 echo "Creating role: $rolename"
@@ -63,7 +68,7 @@ echo "Writing rolename to variable to be used ..."
 
 outputARN="ARN ouput"
 outputARN=$(aws iam create-role --role-name $PARAM_ROLE --assume-role-policy-document file://$ROLE_PATH)
-echo $outputARN >> arn_folder/outputARN.txt
+echo $outputARN > arn_folder/outputARN.txt
 
 # example output as ARN:
 # --role arn:aws:iam::123456789012:role/service-role/MyTestFunction-role-tges6bf4
@@ -81,92 +86,119 @@ echo ""
 #        "RoleId": "AROAVFDJ67ATUNTFHI6JE"
 #
 
-#role:
+# role:
 # --role arn:aws:iam::354557032487:role/Test-Role
 # --role arn:aws:iam::354557032487:role/Test-Role
 
-
+##
 # need to get the arn information to make the lambda function
+#
+#
 #fileARN=$(grep -Eo "$PARAM_ROLE" file:/arn_folder/outputARN.txt)
 #fileARN=$(grep -o '"Arn":.*' file://arn_folder/outputARN.txt | cut -d'"' -f4)
 #fileARN=$(grep -o '"$PARAM_ROLE":.*' file:/arn_folder/outputARN.txt | cut -d'"' -f4)
+
 fileARN=$(grep -o '"Arn":.*' file:/arn_folder/outputARN.txt | cut -d'"' -f4)
 echo "fileARN: $fileARN"
 useARN=fileARN
 
-
+##
 # handler name:
+nodejsHandler="index.handler"
+pythonHandler="handler.lambda_handler"
+defaultHandler="lambda_function.lambda_handler"
 useHandler="handler.lambda_handler"
 
+##
 # file zip path
+#
+nodejsPath="lambda_folder/lambda_js.zip"
+pythonPath="lambda_folder/lambda_py.zip"
 usePath="lambda_folder/lambda.zip"
 
+##
 # create lambda function 
+#
 echo "Creating lambda function with name $PARAM_NAME"
 echo "chosen runtime, ARN, handler"
 echo "runtime: $PARAM_RUNTIME"
 echo "role ARN: $outputARN"
 echo "file ARN: $useARN"
 echo "handler: $useHandler"
+echo "filepath: $usePath"
 # aws lambda create-function --function-name test_cli --runtime python3.6 --role new_test_cli_role --handler handler.lambda_handler --zip-file fileb://lambda.zip
 # aws lambda create-function --function-name test_cli --runtime python3.6 --role arn:aws:iam::354557032487:role/Test-Role --handler handler.lambda_handler --zip-file fileb://lambda.zip
 # aws lambda create-function --function-name $PARAM_NAME --runtime python3.6 --role arn:aws:iam::354557032487:role/Test-Role --handler handler.lambda_handler --zip-file fileb://lambda.zip
 
 aws lambda create-function --function-name $PARAM_NAME --runtime $PARAM_RUNTIME --role $useARN --handler $useHandler --zip-file fileb://$usePath
 
-
-# layer arn:
-
-# python & dynamodb
-# arn:aws:lambda:ap-south-1:354557032487:layer:python-dynamodb:1
-
-# python & mysql
-# arn:aws:lambda:ap-south-1:354557032487:layer:bangkok_petHotel:1
-
-# nodejs14-16 
-# arn:aws:lambda:ap-south-1:354557032487:layer:clientdynamodb:2
-
-
-# need layer ARN from Singapore ...
-
+##
+# List of layer ARNs:
+#
+# python & dynamodb # arn:aws:lambda:ap-south-1:354557032487:layer:python-dynamodb:1
+mumbai_py_dynamoDB_ARN="arn:aws:lambda:ap-south-1:354557032487:layer:python-dynamodb:1"
+# python & mysql # arn:aws:lambda:ap-south-1:354557032487:layer:bangkok_petHotel:1
+mumbai_py_mysql_ARN=""
+# nodejs14-16 # arn:aws:lambda:ap-south-1:354557032487:layer:clientdynamodb:2
+mumbai_njs1416_ARN=""
 # singapore python ARN
-
-# singapore nodejs 14,16 ARN
-# arn:aws:lambda:ap-southeast-1:354557032487:layer:client-dynamodb:1
-# singapore other ARN
-
-
+singapore_py_dynamoDB_ARN=""
+# singapore nodejs 14,16 ARN # arn:aws:lambda:ap-southeast-1:354557032487:layer:client-dynamodb:1
+singapore_njs1416_ARN=""
+# singapore other ARNs
+# use Source ARN
 useSourceARN="arn:aws:lambda:ap-southeast-1:354557032487:layer:client-dynamodb:1"
 
 echo "Attaching ARN layer to Lambda Function"
-
 echo "Source ARN: $useSourceARN"
 
+##
 # attempt to attach arn layer to lambda function
+#
+#
 # aws lambda create-event-source-mapping (ARN) (function-name) [(enabled?), (batch-size), (starting-position), (start-pos-timestamp), (cli-input-json), (skeleton) ]
 # aws lambda create-event-source-mapping --event-source-arn arn:aws:lambda:ap-south-1:354557032487:layer:python-dynamodb:1 --function-name test_cli --enabled
 aws lambda create-event-source-mapping --event-source-arn $useSourceARN --function-name $PARAM_NAME --enabled
 
-
+##
+# update configuration lambda step
+#
 echo "updating configuration"
-
 # aws lambda update-function-configuration --function-name my-function \
 # --layers arn:aws:lambda:us-east-2:123456789012:layer:my-layer:3 \
 # arn:aws:lambda:us-east-2:111122223333:layer:their-layer:2
 # aws lambda update-function-configuration --function-name my-function  --layers arn:aws:lambda:us-east-2:123456789012:layer:my-layer:3
-# aws lambda update-function-configuration --function-name test_cli --layers arn:aws:lambda:ap-south-1:354557032487:layer:python-dynamodb:1
+aws lambda update-function-configuration --function-name $PARAM_NAME --layers $useSourceARN
 
-
+##
+# removal layers function
+#
 echo "removal of layers?"
 # to remove layers
 # aws lambda update-function-configuration --function-name my-function --layers []
 
+
+##
+# kms key arn
+#
 echo "kms key arn?"
 # --kms-key-arn
 # aws lambda update-function-configuration --function-name test_cli --kms-key-arn arn:aws:lambda:ap-south-1:354557032487:layer:python-dynamodb:1
 
-
-
+##
+# return finished script
+#
 echo "FINISHED SCRIPT"
 
+
+##
+# writing script execution log to folder/file
+current_time=$(date +"%T")
+current_day=$(date +"%A")
+
+echo "func: $PARAM_NAME | role: $PARAM_ROLE | $current_day | $current_time" >> logs_folder/logs.txt
+
+
+##
+# exit return
 echo "exit"
