@@ -42,9 +42,9 @@ This is a list of commands that are used within the project:
 
 + Initiate the automated script (simple version):
 
-	$ bash auto_run_simple.sh 
+        $ bash auto_run_simple.sh 
 
-	$ ./auto_run_simple 
+        $ ./auto_run_simple 
 
 
 + Initiate the automated advanced script:
@@ -56,10 +56,10 @@ This is a list of commands that are used within the project:
 	
 	Parameters: 
 	
-	+ Param 0: Region configuration
-	+ Param 1: Function name
-	+ Param 2: Role name
-	+ Param 3: ...
+	+ param 0: Region configuration
+	+ param 1: Function name
+	+ param 2: Role name
+	+ param 3: ...
 
 
 
