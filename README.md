@@ -67,12 +67,12 @@ This is a list of commands that are used within the project:
 
 This is a list files from the codebase that are required for the project to run properly. 
 
-
-+ /lambda_codebase/	| This folder contains the different dummy lambda function codes & zip files
-+ /role_folder/		| This folder contains the different role configuration files represented as json
-+ /config_folder/	| Contains the data for configuring to the AWS account & region
-+ /old_folder/		| This folder contains old codebase files & example files
-+ /test_folder/ 	| This folder contains the different testing methods & techniques
++ /arn_folder/		| This folder contains the role arn outputs.
++ /lambda_codebase/	| This folder contains the different dummy lambda function codes & zip files.
++ /role_folder/		| This folder contains the different role configuration files represented as json.
++ /config_folder/	| This folder contains the data for configuring to the AWS account & region.
++ /old_folder/		| This folder contains old codebase files & example files.
++ /test_folder/         | This folder contains the different testing methods & techniques.
 
 
 ### Files produced:
