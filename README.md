@@ -1,11 +1,11 @@
-This is a README.md file for this code project : AWS Lambda Dummy Function Automatic Setup
+# This is a README.md file for this code project : AWS Lambda Dummy Function Automatic Setup
 
 
-This is written by sebistj, 25/01/23
-This was last updated on, 27/01/23
+## This is written by sebistj, 25/01/23
+## This was last updated on, 27/01/23
 
 
-Prereq:
+### Prereq:
 
 awscli -> AWS command line use 
 
