@@ -1,0 +1,17 @@
+backlog doc:
+
+
+tests:
+
+	unit tests
+
+	integration test
+
+	smoke test
+
+error checking
+error guidance
+
+auto git and scripts
+
+other backlog stuff

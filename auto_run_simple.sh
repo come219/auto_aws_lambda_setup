@@ -154,6 +154,9 @@ echo "filepath: $usePath"
 
 aws lambda create-function --function-name $PARAM_NAME --runtime $PARAM_RUNTIME --role $useARN --handler $useHandler --zip-file fileb://$usePath
 
+# aws lambda create-function --function-name $PARAM_NAME --runtime $PARAM_RUNTIME --role $PARAM_ROLE --handler $useHandler --zip-file fileb://$usePath
+
+
 
 ##
 # List of layer ARNs:
