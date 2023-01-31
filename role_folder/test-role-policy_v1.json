@@ -3,9 +3,7 @@
   "Statement": [
     {
       "Effect": "Allow",
-      "Principal": {
-        "Service": "lambda.amazonaws.com"
-      },
+      "Principal": { "AWS": "*" },
       "Action": "sts:AssumeRole"
     }
   ]

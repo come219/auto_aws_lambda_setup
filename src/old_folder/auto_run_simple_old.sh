@@ -44,6 +44,9 @@ echo "configuring the AWS ..."
 
 echo ""
 
+:'
+Test comment
+'
 
 ##
 # Configure the AWS CLI to use the region
@@ -104,9 +107,7 @@ echo ""
 
 # fileARN=$(sed 's/.*"Arn": "\(.*\)".*/\1/p' "$pathARN")
 
-# fileARN=$(sed -n 's/.*"Arn":// "\(.*\)".*/\1/p' "$pathARN")
-fileARN=$(sed 's/.*"Arn": "\(.*\)".*/\1/' "$pathARN")
-
+fileARN=$(sed 's/.*Arn”://' "$pathARN")
 
 # sed pipe out rest
 sedPath="sed_folder/sed_temp.txt"
@@ -114,13 +115,13 @@ echo "parsing to sed temp"
 echo $fileARN > $sedPath
 
 #fileARN2=$(sed '/CreateDate/d; /AssumeRolePolicyDocument/d' "$fileARN" )
-fileARNtwo=$(sed 's/", ".*//' "$sedPath" )
+fileARN2=$(sed 's/, “CreateDate.*//' "$sedPath" )
 
 echo ""
 echo "pathARN: $pathARN"
-echo "fileARN: $fileARNtwo"
+echo "fileARN: $fileARN2"
 echo ""
-useARN=$fileARNtwo
+useARN=$fileARN2
 echo $useARN > test_folder/test.txt
 
 
@@ -152,7 +153,7 @@ echo "filepath: $usePath"
 # aws lambda create-function --function-name test_cli --runtime python3.6 --role arn:aws:iam::354557032487:role/Test-Role --handler handler.lambda_handler --zip-file fileb://lambda.zip
 # aws lambda create-function --function-name $PARAM_NAME --runtime python3.6 --role arn:aws:iam::354557032487:role/Test-Role --handler handler.lambda_handler --zip-file fileb://lambda.zip
 
-aws lambda create-function --function-name $PARAM_NAME --runtime $PARAM_RUNTIME --role $useARN --handler $useHandler --zip-file fileb://$usePath
+# aws lambda create-function --function-name $PARAM_NAME --runtime $PARAM_RUNTIME --role $useARN --handler $useHandler --zip-file fileb://$usePath
 
 
 ##
@@ -183,10 +184,6 @@ echo "Source ARN: $useSourceARN"
 # aws lambda create-event-source-mapping --event-source-arn arn:aws:lambda:ap-south-1:354557032487:layer:python-dynamodb:1 --function-name test_cli --enabled
 
 # aws lambda create-event-source-mapping --event-source-arn $useSourceARN --function-name $PARAM_NAME --enabled
-
-
-
-################### HERE
 
 ##
 # update configuration lambda step

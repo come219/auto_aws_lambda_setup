@@ -1,0 +1,21 @@
+using: https://sed.js.org/
+
+
+'s/.*"Arn": "\(.*\)".*/\1/'
+
+{ "Role": { "Path": "/", "RoleName": "dummy_role1", "RoleId": "AROAVFDJ67ATS2ZH2LIGM", "Arn": "arn:aws:iam::354557032487:role/dummy_role1", "CreateDate": "2023-01-31T03:18:51Z", "AssumeRolePolicyDocument": { "Version": "2012-10-17", "Statement": [ { "Effect": "Allow", "Principal": { "AWS": "*" }, "Action": "sts:AssumeRole" } ] } } }
+
+
+arn:aws:iam::354557032487:role/dummy_role1", "CreateDate": "2023-01-31T03:18:51Z", "AssumeRolePolicyDocument": { "Version": "2012-10-17", "Statement": [ { "Effect": "Allow", "Principal": { "AWS": "*" }, "Action": "sts:AssumeRole
+
+
+
+'s/", ".*//'
+
+arn:aws:iam::354557032487:role/dummy_role1", "CreateDate": "2023-01-31T03:18:51Z", "AssumeRolePolicyDocument": { "Version": "2012-10-17", "Statement": [ { "Effect": "Allow", "Principal": { "AWS": "*" }, "Action": "sts:AssumeRole
+
+
+arn:aws:iam::354557032487:role/dummy_role1
+
+
+

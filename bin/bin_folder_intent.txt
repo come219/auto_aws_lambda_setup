@@ -1,0 +1,23 @@
+this folder intends to contain all the executables for the project:
+
+This would probably be the executables of the scripts that will be created:
+
+
+
+List of Executables:
+
+auto_run 
+
+auto_run_simple
+
+auto_run_nodejs16
+
+auto_run_python_dynamodb
+
+auto_run_python_mysql
+
+
+unit test executables
+integration executables
+git executables
+others ...

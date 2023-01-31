@@ -1,0 +1,20 @@
+this folder intends to contain all the scripts for the project:
+
+List of Scripts:
+
+auto_run .sh (COPY)
+
+auto_run_simple.sh (COPY)
+
+auto_run_nodejs16.sh
+auto_run_nodejs14.sh
+auto_run_nodejs18.sh
+auto_run_python_dynamodb.sh
+auto_run_python_mysql.sh
+auto_run_python_mysql.sh
+auto_run_java.sh
+
+unit test executables .sh
+integration executables .sh
+git executables .sh
+others ... .sh
