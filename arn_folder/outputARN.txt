@@ -1,1 +1,1 @@
-
+{ "Role": { "Path": "/", "RoleName": "dummy_role08-40-14Thursday", "RoleId": "AROAVFDJ67ATUH4Z4DGQP", "Arn": "arn:aws:iam::354557032487:role/dummy_role08-40-14Thursday", "CreateDate": "2023-02-02T08:40:16+00:00", "AssumeRolePolicyDocument": { "Version": "2012-10-17", "Statement": [ { "Effect": "Allow", "Principal": { "Service": "lambda.amazonaws.com" }, "Action": "sts:AssumeRole" } ] } } }

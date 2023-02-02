@@ -1,4 +1,4 @@
-#!/bin/bash
+\#!/bin/bash
 
 ###
 # This is a bash script that automatically creates a NODE.JS dummy function straight to the configured aws region
@@ -24,26 +24,26 @@ echo "_________________________________________"
 
 # get lambda list current list
 echo "Lambda functions list"
-#aws lambda list-functions
+# aws lambda list-functions
 # aws lambda list-functions --region ap-southeast-1
 
 # get roles list
 echo "role list"
-#aws iam list-roles
+# aws iam list-roles
 
 # possibly grep from the two list to check if using the param_role or param_name is okay
 
 
 # current time in name
-s_current_time=$(date +"%T")
+s_current_time=$(date +"%T" | tr : -)
 s_current_day=$(date +"%A")
-s_datetime = "$s_current_time $s_current_day"
-echo "$s_datetime"
+s_datetime="$s_current_time$s_current_day"
+echo "s_datetime: $s_datetime"
 
 # dynamic params
 PARAM_REGION="ap-southeast-1"
-PARAM_ROLE="dummy_role1"
-PARAM_NAME="dummy_function1"
+PARAM_ROLE="dummy_role$s_datetime"
+PARAM_NAME="dummy_function$s_datetime"
 PARAM_RUNTIME="nodejs16.x"
 
 # sample params
@@ -94,6 +94,11 @@ echo $outputARN > $pathARN
 # arn_folder/outputARN.txt
 
 # example output as ARN:
+
+echo "sleep for 5"
+sleep 5
+
+
 # --role arn:aws:iam::123456789012:role/service-role/MyTestFunction-role-tges6bf4
 
 echo "role has been created successfully and saved to the file: /arn_folder/outputARN.txt"
@@ -158,6 +163,9 @@ nodejsPath="lambda_folder/lambda_js.zip"
 pythonPath="lambda_folder/lambda_py.zip"
 usePath="lambda_folder/lambda.zip"
 
+echo "sleep for 5"
+sleep 5
+
 ##
 # create lambda function 
 #
@@ -176,6 +184,9 @@ aws lambda create-function --function-name $PARAM_NAME --runtime $PARAM_RUNTIME 
 
 # aws lambda create-function --function-name $PARAM_NAME --runtime $PARAM_RUNTIME --role $PARAM_ROLE --handler $useHandler --zip-file fileb://$usePath
 
+
+echo "sleep for 5"
+sleep 5
 
 
 ##
@@ -249,6 +260,12 @@ current_day=$(date +"%A")
 
 echo "func: $PARAM_NAME | role: $PARAM_ROLE | $current_day | $current_time" >> logs_folder/logs.txt
 
+
+# echo "function name: $PARAM_NAME$s_datetime"
+# echo "role name: $PARAM_ROLE$s_datetime"
+
+echo "function name: $PARAM_NAME"
+echo "role name: $PARAM_ROLE"
 
 ##
 # exit return

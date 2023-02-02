@@ -1,1 +1,1 @@
-
+arn:aws:iam::354557032487:role/dummy_role08-40-14Thursday
