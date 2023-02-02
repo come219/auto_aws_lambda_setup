@@ -20,6 +20,26 @@ echo "written by sebistj, 27/01/23"
 echo "last update, 30/01/23"
 echo "_________________________________________"
 
+
+
+# get lambda list current list
+echo "Lambda functions list"
+aws lambda list-functions
+# aws lambda list-functions --region ap-southeast-1
+
+# get roles list
+echo "role list"
+aws iam list-roles
+
+# possibly grep from the two list to check if using the param_role or param_name is okay
+
+
+# current time in name
+s_current_time=$(date +"%T")
+s_current_day=$(date +"%A")
+s_datetime = "$s_current_time $s_current_day"
+echo "$s_datetime"
+
 # dynamic params
 PARAM_REGION="ap-southeast-1"
 PARAM_ROLE="dummy_role1"
