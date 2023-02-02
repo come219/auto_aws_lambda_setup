@@ -12,7 +12,10 @@ This project intends to, when invoked, automatically create an AWS Lambda functi
 Currently it has two invocation methods:
 
 
-+ **auto_run.sh**	| This function features parameters when invoking the script, with multiple configurations. Error checking.
++ **auto_setup.sh**		| This function prompts the user to configure their AWS region and account.
+
+
++ **auto_run.sh**		| This function features parameters when invoking the script, with multiple configurations. Error checking.
 
 
 + **auto_run_simple.sh**	| This function runs the functions without parameters or intervention. Parameters are set within the script.
@@ -31,36 +34,40 @@ If there are errors while using this script and the role & lambda function do no
 
 Note: it is better to delete the Lambda function before deleting the role.
 
-
-+ **awscli**	| AWS command line use 
-+ **python**	| python sdk
-+ **python3**	| python3 sdk
-+ **json**	| json sdk
-+ **nodejs.14**	| nodejs 14 sdk
-+ **nodejs.16** | nodejs 16 sdk
++ **awscliv2**   | version 2 of AWS command line use (no dependency hell but installed through pip)
++ (old) **awscli**     | AWS command line use 
++ **python**     | python sdk
++ **python3**    | python3 sdk
++ **json**       | json sdk
++ **nodejs.14**	 | nodejs 14 sdk
++ **nodejs.16**  | nodejs 16 sdk
 +  **nodejs.18** | nodejs 18 sdk
-+ **java**	| java sdk
-+ (outdated) **jq** - to replace json words
-+  git		| git ??
++ **java**	 | java sdk
++ (old) **jq** - to replace json words
++  git		 | git ??
 
 
 ### Commands:
 
 This is a list of commands that are used within the project:
 
++ To start set up of the project:
+	$ bash auto_setup.sh
+	
+	$ ./bin/auto_setup
 
 + Initiate the automated script (simple version):
 
         $ bash auto_run_simple.sh 
 
-        $ ./auto_run_simple 
+        $ ./bin/auto_run_simple 
 
 
 + Initiate the automated advanced script:
 
         $ bash auto_run.sh {param1} {param2}
 
-        $ ./auto_run {param ...}
+        $ ./bin/auto_run {param ...}
 
 	
 	Parameters: 
@@ -76,21 +83,27 @@ This is a list of commands that are used within the project:
 
 This is a list files from the codebase that are required for the project to run properly. 
 
++ /bin/			| This folder should contain all the executables for the project.
++ /scripts/		| This folder should contain all the scripts for the project.
++ /src/			| This is the source folder that should contain the project codebase.
++ /docs/		| This folder will contain all the relevant docs for the project.
++ /logs_folder/		| This folder contains all the logs generated from running the script.
++ /sed_folder/		| This folder is used by sed to write the ARN to temp file to be used. 
 + /arn_folder/		| This folder contains the role arn outputs.
-+ /lambda_codebase/	| This folder contains the different dummy lambda function codes & zip files.
++ /lambda_folder/	| This folder contains the different dummy lambda function codes & zip files.
 + /role_folder/		| This folder contains the different role configuration files represented as json.
 + /config_folder/	| This folder contains the data for configuring to the AWS account & region.
-+ /old_folder/		| This folder contains old codebase files & example files.
 + /test_folder/         | This folder contains the different testing methods & techniques.
 
 
-### Files produced:
+### Files produced & Outputs:
 
 These files are produced as an output as a result for running/successfully executing the script.
 
 + function_output	| This file contains the lambda function creation execution output
 + arn_file		| This file contains the arn datas for the created lambda objects
-
++ Lambda function	| An empty framework lambda function with all the configurations setup.
++ IAM role		| An IAM role that is used by the corresponding lambda function.
 
 
 ## Change Log:
@@ -103,8 +116,11 @@ These files are produced as an output as a result for running/successfully execu
         |_________|______________|_______________|___________
         |   1.0   |    27/01/23  |  project init | versioning
         |_________|______________|_______________|___________
-        |   1.1   |  unreleased  |  m.v.p.       | working minimum viable product
+        |   1.1   |   02/02/23   |  m.v.p.       | working minimum viable product
+        |_________|______________|_______________|___________
+        |   1.2   |   unreleased |  working adv  | working advanced version
         |_________|______________|_______________|__________
+
 
 
 ## Back Log:
@@ -112,5 +128,7 @@ These files are produced as an output as a result for running/successfully execu
         [✓] created this...
         [x] finished implementation
         [x] working advanced version
-        [x] 30/01/23, uncommentted functions/features ... more documentation
-
+        [✓] 30/01/23, uncommentted functions/features ... more documentation
+	[✓] 02/02/23, working functions with distinguishable names
+	[x] need params -> advanced version
+	[x] other error checking
