@@ -24,12 +24,12 @@ echo "_________________________________________"
 
 # get lambda list current list
 echo "Lambda functions list"
-aws lambda list-functions
+#aws lambda list-functions
 # aws lambda list-functions --region ap-southeast-1
 
 # get roles list
 echo "role list"
-aws iam list-roles
+#aws iam list-roles
 
 # possibly grep from the two list to check if using the param_role or param_name is okay
 

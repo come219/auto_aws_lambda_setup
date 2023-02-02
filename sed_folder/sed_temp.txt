@@ -1,1 +1,1 @@
-arn:aws:iam::354557032487:role/dummy_role1", "CreateDate": "2023-02-02T06:13:59Z", "AssumeRolePolicyDocument": { "Version": "2012-10-17", "Statement": [ { "Effect": "Allow", "Principal": { "Service": "lambda.amazonaws.com" }, "Action": "sts:AssumeRole
+
